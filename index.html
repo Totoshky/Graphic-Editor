@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Graphic Editor</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <script src="bootstrap.min.js"></script>
+</head>
+
+<body class="d-flex flex-row main">
+
+    <div class="d-flex flex-column actions">
+        <button class="btn btn-primary" id="gray" type="button">Grayscale</button>
+        <button class="btn btn-primary" id="noise" type="button">Noise</button>
+        <button class="btn btn-primary" id="bright" type="button">Brightness</button>
+        <button class="btn btn-primary" id="threshold" type="button">Binarization Threshold</button>
+        <button class="btn btn-primary" id="blur" type="button">Blur</button>
+        <button class="btn btn-primary" id="conv" type="button">Convolution</button>
+        <br>
+        <form id="matrix" role="form" >
+            <input type="text" name="field00" size="3" />
+            <input type="text" name="field01" size="3" />
+            <input type="text" name="field02" size="3" />
+            <br>
+            <input type="text" name="field10" size="3" />
+            <input type="text" name="field11" size="3" />
+            <input type="text" name="field12" size="3" />
+            <br>
+            <input type="text" name="field20" size="3" />
+            <input type="text" name="field21" size="3" />
+            <input type="text" name="field22" size="3" />
+            <br>
+        </form>
+        <br>
+        <button class="btn btn-primary" id="undo" type="button">Previous</button>
+        <button class="btn btn-primary" id="redo" type="button">Next</button>
+        <br>
+
+        <button class="btn btn-warning mt-xl-5" id="source" type="button">Invert changes</button>
+    </div>
+
+    <div class="canv">
+        <div class="d-flex flex-column justify-content-center">
+            <div class="d-flex flex-row justify-content-center channels">
+                <span id="time">Time: 0 milliseconds</span>
+                <div class="mx-4">
+                    <span>Channels:</span>
+
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="mx-1">
+                            <input id="red" type="checkbox" name="alpha"> red
+                        </label>
+                        <label class="mx-1">
+                            <input id="green" type="checkbox" name="alpha"> green
+                        </label>
+                        <label class="mx-1">
+                            <input id="blue" type="checkbox" name="alpha"> blue
+                        </label>
+                        <label class="mx-1">
+                            <input id="alpha" type="checkbox" name="alpha"> alpha
+                        </label>
+                    </div>
+                </div>
+
+                <script src="histogram.js"></script>
+                <script src="transform_stack.js"></script>
+                <script src="choosefile.js"></script>
+                <script src="gray_сonversion.js"></script>
+                <script src="noise_filter.js"></script>
+                <script src="convolution_filter.js"></script>
+                <script src="transparency_filter.js"></script>
+                <script src="brightness_filter.js"></script>
+                <script src="threshold_filter.js"></script>
+                <script src="blurring_filter.js"></script>
+                <script src="load_default.js"></script>
+                <script src="time_measure.js"></script>
+
+                <span id="valBox"></span>
+                <br>
+            </div>
+
+            <canvas id="canvas"></canvas>
+
+            <div class="d-flex flex-row justify-content-around align-items-center actionswithfile">
+                <input id="newFile" type="file" onchange="read(files[0])" accept='image/*' />
+                <button class="btn btn-primary my-2" id="download" type="button">Download</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="downloadfile.js"></script>
+    
+</body>
+
+</html>
